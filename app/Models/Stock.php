@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Stock extends Model
+{
+        /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+
+    protected $primaryKey = 'material_id';
+    
+    protected $fillable = [
+    	'material_id',	'material_name', 'order_id',	'available_stock',	'required_stock',	'status'
+     ];
+    public function materialproduct(){
+        return $this->hasMany(Materialproduct::class,'material_id','material_id');
+    } 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+}
+
